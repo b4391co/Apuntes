@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear / destruir</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <h1>Crear / destruir</h1>
+
+    <!--El atributo action indica la página a la que se envían los datos del formulario. Si este atributo está vacío, 
+    es la página que contiene el formulario la que se recargará con los datos como parámetros -->
+
+    <input onclick="crear()" type="submit" name="crear" id="boton-crear" value="crear"/>     
+    <input onclick="destruir()" type="submit" name="destruir" id="boton-destruir" value="destruir"/>        
+
+    <div id="lista"></div>
+
+</body>
+<script>
+var contador = 0;
+function crear(){
+    contador++;
+    let lista = document.createElement("ul");
+    //lista.setAttribute("class",contador);
+    lista.innerHTML = "<li>1</li><li>2</li><li>3</li>";
+    document.getElementById("lista").append(lista);
+}
+
+function destruir(){
+    //document.getElementsByClassName(contador).innerHTML = " ";
+    document.getElementById("lista").innerHTML = " ";
+    contador--;
+}
+
+</script>
+</html>

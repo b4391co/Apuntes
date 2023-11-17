@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Docker Xdebug",
+        "type": "php",
+        "request": "launch",
+        "port": 9000,
+        "pathMappings": {
+          "/app": "${workspaceFolder}"
+        },
+        "dockerOptions": {
+          "php": "8.0",
+          "stopOnEntry": false
+        },
+        "ignore": ["**/vendor/**/*.php"]
+      }
+    ]
+  }

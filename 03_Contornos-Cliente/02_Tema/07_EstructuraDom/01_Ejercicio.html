@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicios fechas 1d</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style type="text/css">
+        .mesAnho {
+            float: left;
+            width: 80px;
+        }
+        .sinMarcar {
+            background-color: #dedede;
+            float: left;
+            width: 20px;
+            margin: 2px;
+            text-align: center;
+        }
+        .marcado {
+            background-color: #9e9e9e;
+            font-weight: bold;
+            float: left;
+            width: 20px;
+            margin: 2px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="mostrarFecha" id="fecha1">
+
+    </div>
+    <div class="fecha" id="cuadroFecha">
+        <div class="mesAnho" id="mesAnho"></div>            
+    </div>
+</body>
+<script>
+    const diasFebrero = (anho)=> {
+        if (((anho % 4 == 0) && (anho % 100 != 0)) || (anho % 400 == 0)) { //Aplico las condiciones
+            //Es bisiesto 
+            return 29;
+        } else {
+            //No es bisiesto
+            return 28;
+        }
+    }
+
+    window.onload = () => {
+        let fecha = new Date();
+        let diaSemana = fecha.getDay();
+
+        let diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+        let meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
+        let dia = fecha.getDate();
+        let mes = fecha.getMonth();
+        let anho = fecha.getFullYear();
+
+        let numeroDiasMeses = new Array((31, diasFebrero(anho)),31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    
+        let parrafo1 = document.createElement('h1');
+
+        parrafo1.innerHTML = dia + "/" + ( mes + 1 ) + "/" + anho;
+        document.getElementById("fecha1").append(parrafo1);
+    
+        let parrafo2 = document.createElement('h2');
+        parrafo2.innerHTML = dia + " de " + meses[mes] + " de " + anho;
+        document.getElementById("fecha1").append(parrafo2);
+
+        let parrafo3 = document.createElement('h3');
+        parrafo3.innerHTML = diasSemana[diaSemana] + " , " + dia + " de " + meses[mes] + " de " + anho; 
+        document.getElementById("fecha1").append(parrafo3);
+
+    }
+</script>
+</html>

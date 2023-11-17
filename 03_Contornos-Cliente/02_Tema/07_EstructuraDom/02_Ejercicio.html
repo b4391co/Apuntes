@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cálculo edad</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <h1>Indica la fecha de tu cumpleaños.</h1>
+
+    <!--El atributo action indica la página a la que se envían los datos del formulario. Si este atributo está vacío, 
+    es la página que contiene el formulario la que se recargará con los datos como parámetros -->
+
+    <form name="miFormulario" action="javascript:calculo()">
+        <input type="date" name="fechaNacimiento" id="fechaNacimiento" required=""/>
+        <input type="submit" name="enviar" id="boton" value="Enviar fecha"/>        
+    </form>
+
+    <div id="resultado"></div>
+
+</body>
+<script>
+    function calculo() {
+        let cadena = document.getElementById("fechaNacimiento").value;
+        var fArray = cadena.split("-");
+        var fechaNacimiento = new Date(fArray[0], fArray[1] - 1, fArray[2]);
+
+        var hoy = new Date();
+        var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+        if (hoy.getMonth() < fechaNacimiento.getMonth()){
+            edad--;
+        }
+        else if (hoy.getMonth() == fechaNacimiento.getMonth() && hoy.getDate() < fechaNacimiento.getDate()) { //Estamos en el mes de su cumpleaños
+            edad--;
+        }
+        
+        let tituloH1 = document.createElement("h1");
+        tituloH1.innerHTML = "Tu edad es : " + edad;
+        document.getElementById("resultado").append(tituloH1);
+    }
+</script>
+</html>

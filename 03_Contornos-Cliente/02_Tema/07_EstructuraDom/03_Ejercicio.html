@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cálculo edad</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <h1>Indica la fecha de el evento.</h1>
+
+    <!--El atributo action indica la página a la que se envían los datos del formulario. Si este atributo está vacío, 
+    es la página que contiene el formulario la que se recargará con los datos como parámetros -->
+
+    <form name="miFormulario" action="javascript:calculo()">
+        <input type="date" name="fechaEvento" id="fechaEvento" required=""/>
+        <input type="submit" name="enviar" id="boton" value="Enviar fecha"/>        
+    </form>
+
+    <div id="resultado"></div>
+
+</body>
+<script>
+    function calculo() {
+        let fechaEvento = document.getElementById("fechaEvento").valueAsDate;
+        //var fArray = cadena.split("-"); //Convierto la cadena en un Array utilizando el separador guión
+        //var fechaEvento = new Date(fArray[0], fArray[1] - 1, fArray[2]);
+
+        var hoy = new Date();
+        hoyMilisegundos = hoy.getTime();
+        eventoMilisegundos = fechaEvento.getTime();
+
+        resultado = new Date(eventoMilisegundos - hoyMilisegundos);
+
+        document.getElementById("resultado").innerHTML = " ";
+        let tituloH2 = document.createElement("h2");
+        tituloH2.innerHTML = ((1970 - resultado.getFullYear()) + " años, " + resultado.getMonth() + " Meses, " + resultado.getDate() + " Dias");
+        document.getElementById("resultado").append(tituloH2);
+    }
+</script>
+</html>
