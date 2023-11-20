@@ -3,7 +3,7 @@ include "funciones.php";
 
 ini_set("upload_max_filesize", "2M");
 
-const DESTINO = "./assets/";
+const DESTINO = "." . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR ;
 ?>
 <!DOCTYPE html>
 <html lang="en">

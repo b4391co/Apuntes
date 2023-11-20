@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "_06_esOmirp",
+            "request": "launch",
+            "mainClass": "_06_esOmirp",
+            "projectName": "T3-5_03_Boletin2_1861a3ef"
+        },
+        {
+            "type": "java",
+            "name": "_05_Armstrong",
+            "request": "launch",
+            "mainClass": "_05_Armstrong",
+            "projectName": "T3-5_03_Boletin2_1861a3ef"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",

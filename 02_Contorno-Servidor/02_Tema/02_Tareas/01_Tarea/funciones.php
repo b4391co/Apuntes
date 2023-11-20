@@ -17,9 +17,6 @@ function mostrarFicheros($ficheros){
         echo "<br/><br/><b>Archivo " . ($clave + 1) . ":</b>";
         foreach ($keys as $key) {
             echo "<br/><strong>$key</strong>: " . $ficheros[$key][$clave];
-            if ($key == "error"){
-                
-            }
         }
     }
 }
