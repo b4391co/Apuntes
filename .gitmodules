@@ -1,6 +1,3 @@
-[submodule "04_Desenvolvemento/01_Tema/03_Test/test"]
-	path = 04_Desenvolvemento/01_Tema/03_Test/test
-	url = git@github.com:b4391co/test.git
 [submodule "04_Desenvolvemento/01_Tema/02_Yatzy/Yatzy"]
 	path = 04_Desenvolvemento/01_Tema/02_Yatzy/Yatzy
 	url = git@github.com:b4391co/Yatzy.git
