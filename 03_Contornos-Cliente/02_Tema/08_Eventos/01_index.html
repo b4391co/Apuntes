@@ -40,10 +40,11 @@ function subir(id){
     nota.innerHTML = document.getElementById(id).value +  '&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="eliminar(' + contadorId + ')">Eliminar</button><button onclick="subir(' + contadorId + ')">subir</button><button onclick="bajar(' + contadorId + ')">bajar</button>';
     var primero = document.getElementById('0');
     document.getElementById('insertarNota').insertBefore(nota,primero);
-    contadorId++;
 
     let eliminar = document.getElementById(id);
     eliminar.parentNode.removeChild(eliminar);
+    contadorId++;
+
 }
 
 function bajar(id){
