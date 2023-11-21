@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="number" id="id-num"/>
+        <input type="button" id="id-button" value="Añadir nota"/>
+    </form>
+    <br>
+    <div id="insertarNota"></div>
+</body>
+
+<script>
+
+const boton = document.getElementById("id-button");
+let contadorId = 0;
+
+boton.addEventListener("click", function() {
+    let nota = document.createElement('div');
+    nota.value = document.getElementById('id-num').value;
+    nota.id = contadorId;
+    nota.innerHTML = document.getElementById('id-num').value +  '&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="eliminar(' + contadorId + ')">Eliminar</button><button onclick="subir(' + contadorId + ')">subir</button><button onclick="bajar(' + contadorId + ')">bajar</button>';
+    document.getElementById("insertarNota").append(nota);
+    contadorId++;
+});
+
+function eliminar(id){
+    let nota = document.getElementById(id);
+    nota.parentNode.removeChild(nota);
+}
+
+function subir(id){
+    var nota=document.createElement('div');
+    nota.value = document.getElementById(id).value;
+    nota.id = contadorId;
+    nota.innerHTML = document.getElementById(id).value +  '&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="eliminar(' + contadorId + ')">Eliminar</button><button onclick="subir(' + contadorId + ')">subir</button><button onclick="bajar(' + contadorId + ')">bajar</button>';
+    var primero = document.getElementById('0');
+    document.getElementById('insertarNota').insertBefore(nota,primero);
+    contadorId++;
+
+    let eliminar = document.getElementById(id);
+    eliminar.parentNode.removeChild(eliminar);
+}
+
+function bajar(id){
+    var nota=document.createElement('div');
+    nota.value = document.getElementById(id).value;
+    nota.id = contadorId;
+    nota.innerHTML = document.getElementById(id).value +  '&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="eliminar(' + contadorId + ')">Eliminar</button><button onclick="subir(' + contadorId + ')">subir</button><button onclick="bajar(' + contadorId + ')">bajar</button>';
+    contadorId++;
+    document.getElementById("insertarNota").append(nota);
+
+    let eliminar = document.getElementById(id);
+    eliminar.parentNode.removeChild(eliminar);
+}
+</script>
+</html>
