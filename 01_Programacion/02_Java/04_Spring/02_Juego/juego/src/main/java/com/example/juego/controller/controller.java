@@ -46,7 +46,7 @@ public class controller {
 
     @GetMapping("/statistics") 
     public String statistics() {
-        return "consultas: " + numConsultas + "\n aciertos: " + score + "\n fallos: " + numFallos;
+        return "consultas: " + numConsultas + "\n Record: " + score + "\n fallos: " + numFallos;
     }
 
     @GetMapping("/score")

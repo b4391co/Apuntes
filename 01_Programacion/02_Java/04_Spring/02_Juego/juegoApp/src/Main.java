@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
 
-        String[] ips = {"192.168.7.21", "192.168.7.17", "192.168.7.13", "192.168.7.9", "192.168.7.5", "192.168.7.1",
+        /* String[] ips = {"192.168.7.21", "192.168.7.17", "192.168.7.13", "192.168.7.9", "192.168.7.5", "192.168.7.1",
         "192.168.7.18", "192.168.7.14", "192.168.7.10", "192.168.7.2", "192.168.7.6", "192.168.7.11",
         "192.168.7.15", "192.168.7.19", "192.168.7.3", "192.168.7.20", "192.168.7.16", "192.168.7.8",
-        "192.168.7.4"};
-        //String[] ips = { "localhost", "127.0.0.1" };
+        "192.168.7.4"}; */
+        String[] ips = {"localhost","192.168.7.11"};
         menu(ips);
     }
     
@@ -28,6 +28,7 @@ public class Main {
             System.out.println("error");
             menu(ips);
         }
+        main(ips);
     }
 
     public static String consumeAPI(String ip, String path) throws URISyntaxException, IOException, InterruptedException {
@@ -82,6 +83,7 @@ public class Main {
         }
         //Comprueba que tu nueva puntuación sea superior a la que tienes en tu API.
         //Si es superior envíala para que quede registrado tu nuevo record.
+        main(ips);
     }
 
 }
