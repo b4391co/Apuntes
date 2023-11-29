@@ -54,8 +54,6 @@
             if (isset($_POST["author_ids"])) {
                 $book_author_ids = $_POST["author_ids"];
             }
-
-         
         }
     } catch (Exception $ex) {
         $exito = false;
@@ -196,7 +194,7 @@
             }
         }
 
-        function crear_libro(): bool
+        function crear_libro($title,$isbn,$pdate,$pub_Id,$book_author_ids): bool
         {
             $exito = false;
         
@@ -204,25 +202,21 @@
                 $conProyecto = getConnection();
                 $conProyecto->begin_Transaction();
                 $insert = "insert into books(title, isbn, published_date, publisher_id)
-                Values(:title, :isbn, :published_date, :publisher_id)";
+                Values(?, ?, ?, ?)";
 
                 $insert_book_authors = "insert into book_authors(author_id, book_id ) 
-                Values(:author_id, :book_id)";
+                Values(?, ?)";
 
                 $stmt = $conProyecto->prepare($insert);
-                $stmt-> bindParam(":title", $_POST["title"]);
-                $stmt-> bindParam(":isbn", $_POST["isbn"]);
-                $stmt-> bindParam(":published_date", $_POST["pdate"]);
-                $stmt-> bindParam(":publisher_id", $_POST["publisher"]);
+                $date = $pdate->format('Y-m-d');
+                $stmt-> bindParam("sssi", $title, $isbn,$date,$pub_Id);
                 $exito = $stmt->execute();
 
-
-                $book_id = $conProyecto->lastInsertId();
+                $book_id = $conProyecto->insert_id();
 
                 foreach ($_POST["author_ids"] as $author_id) {
                     $stmt_ins_book_authors = $conProyecto->prepare($insert_book_authors);
-                    $stmt_ins_book_authors->bindParam(":book_id", $book_id);
-                    $stmt_ins_book_authors->bindParam(":author_id ", $author_id);
+                    $stmt_ins_book_authors->bindParam("ss", $author_id,$book_id);
                     $exito = $exito && $stmt_ins_book_authors->execute();
                 }
                 
