@@ -138,7 +138,7 @@
         <?php if (isset($_POST["btn_crear_libro"])) : ?>
             <div class="alert alert-success" role="alert">
         <?php
-                $crearLibro = crear_libro();
+                $crearLibro = crear_libro($title,$isbn,$pdate,$pub_Id,$book_author_ids);
                 if ($crearLibro){
         ?>
                 El libro <b> <?= $_POST["title"]?> </b>se ha creado correctamente
@@ -209,14 +209,14 @@
 
                 $stmt = $conProyecto->prepare($insert);
                 $date = $pdate->format('Y-m-d');
-                $stmt-> bindParam("sssi", $title, $isbn,$date,$pub_Id);
+                $stmt-> bind_Param("sssi", $title, $isbn,$date,$pub_Id);
                 $exito = $stmt->execute();
 
-                $book_id = $conProyecto->insert_id();
+                $book_id = $conProyecto->insert_id;
 
                 foreach ($_POST["author_ids"] as $author_id) {
                     $stmt_ins_book_authors = $conProyecto->prepare($insert_book_authors);
-                    $stmt_ins_book_authors->bindParam("ss", $author_id,$book_id);
+                    $stmt_ins_book_authors->bind_Param("ss", $author_id,$book_id);
                     $exito = $exito && $stmt_ins_book_authors->execute();
                 }
                 

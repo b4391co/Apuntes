@@ -3,7 +3,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 
 
-$collection = (new MongoDB\Client("mongodb://172.20.0.5:27017"))->test->users;
+$collection = (new MongoDB\Client)->test->users;
 $collection->drop();
 
 $insertOneResult_bob = $collection->insertOne(['name' => 'Bob', 'state' => 'ny']);
