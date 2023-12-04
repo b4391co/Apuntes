@@ -45,7 +45,7 @@ function CrearVentana () {
   let anno = fecha.getFullYear();
   let parrafo1 = ventana.document.createElement("h1");
   let parrafo2 = ventana.document.createElement("h2");
-  parrafo1.innerHTML = "Breo";
+  parrafo1.innerHTML = "Pepe";
   parrafo2.innerHTML = `${dia} de ${mes} de ${anno}`;
   ventana.document.getElementById("nombre1").append(parrafo1);
   ventana.document.getElementById("fecha1").append(parrafo2);

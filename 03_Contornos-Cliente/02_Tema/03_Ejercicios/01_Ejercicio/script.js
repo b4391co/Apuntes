@@ -26,9 +26,5 @@ function esPrimo(num) {
             return false;
             break;
         }
-        
-        if ( i == num -1 ){
-            return true;
-        }
     }
 }
