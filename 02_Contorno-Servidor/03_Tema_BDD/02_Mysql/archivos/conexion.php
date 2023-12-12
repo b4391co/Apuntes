@@ -1,8 +1,5 @@
 
 <?php
-
-
-
 /**
  * Summary of getConnection
  * Crea un objeto PDO
@@ -21,7 +18,7 @@ function getConnection($file = 'db_settings.ini')
     try {
 
         $con = new PDO($dns, $user , $pass,  array(
-            PDO::ATTR_PERSISTENT => $settings['database']['persistent']
+            PDO::ATTR_PERSISTENT => $settings['database'],
         ));
 
         //Esto no hace falta en versión PHP 8 y superiores: https://www.php.net/manual/en/pdo.error-handling.php
