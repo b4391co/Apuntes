@@ -14,24 +14,26 @@ function crearAntes() {
     let bloque = document.createElement("span");
     bloque.className = "caja";
     bloque.style.background = "chartreuse";
-    antes = document.getElementById("numeroAnterior").value;
-    antes = "bloque" + antes + "";
-    console.log(antes);
-    antes = document.getElementById(antes);
-    document.getElementById('seccion').insertBefore(bloque,antes);
+    document.getElementById("seccion").append(bloque);
+    despues = document.getElementById("numeroAnterior").value;
+    despues = "bloque" + despues + "";
+    console.log(despues);
+    despues = document.getElementById(despues);
+    document.getElementById('seccion').insertBefore(bloque,despues);
 }
 
 function crearDespues() {
     let bloque = document.createElement("span");
     bloque.className = "caja";
     bloque.style.background = "orange";
-    despues = document.getElementById("numeroPosterior").value;
-    despues = parseInt(despues)+1;
-    console.log(despues);
-    despues = "bloque" + despues + "";
-    console.log(despues);
-    despues = document.getElementById(despues);
-    document.getElementById('seccion').insertBefore(bloque,despues);
+    document.getElementById("seccion").append(bloque);
+    antes = document.getElementById("numeroPosterior").value;
+    antes = parseInt(antes)+1;
+    console.log(antes);
+    antes = "bloque" + antes + "";
+    console.log(antes);
+    antes = document.getElementById(antes);
+    document.getElementById('seccion').insertBefore(bloque,antes);
 }
 
 const crearBoton = document.getElementById("crear");
