@@ -2,8 +2,9 @@ public class Cuenta {
     public String titular;
     public double cantidad;
 
-    public CuentaVacia(String titular) {
+    public Cuenta(String titular) {
         this.titular = titular;
+        this.cantidad = 0;
     }
 
     public Cuenta(String titular, double cantidad) {
