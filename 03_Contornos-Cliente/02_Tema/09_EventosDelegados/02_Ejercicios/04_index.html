@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input,#texto{
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input id="texto" type="text" value=""/>
+    </form>
+</body>
+<script>
+        document.onkeypress = function(evento) {
+            console.log(evento.keyCode);
+            if(evento.keyCode >= 48 && evento.keyCode <= 57){
+                document.getElementById("texto").value += (evento.keyCode - 48);
+            }
+        }
+</script>
+</html>

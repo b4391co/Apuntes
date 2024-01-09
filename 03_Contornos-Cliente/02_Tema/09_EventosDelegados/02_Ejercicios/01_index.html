@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tarea 3.1</title>
+</head>
+<body>
+    <div id="eventos">
+        <h2 id="texto"></h2>
+    </div>
+	<form action="" name="formulario">
+        <p> <input type="button" name="boton" id="boton" value="Mostrar"/> </p>
+	</form>
+</body>
+<script type="text/javascript">
+	function eventoRaton(evento) {
+		event.preventDefault(); //Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento 
+		var statusBoton = document.getElementById("boton").value;
+        document.getElementById("texto").innerHTML = "este es el texto" ;
+
+        hideShow(statusBoton);
+
+	}
+
+	window.onload = function() {
+		document.formulario.boton.addEventListener('click', eventoRaton);
+    }
+
+    function hideShow(status) {
+        if (status == "Mostrar"){
+            document.getElementById("texto").style.visibility = "visible" ;
+            document.getElementById("boton").value = "Eliminar";
+        }
+        else{
+            document.getElementById("texto").style.visibility = "hidden" ;
+            document.getElementById("boton").value = "Mostrar";
+        }
+    }
+</script>
+</html>

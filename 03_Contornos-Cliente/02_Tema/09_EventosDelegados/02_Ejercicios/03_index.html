@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tarea 3.1</title>
+</head>
+<body>
+
+	<form action="" name="formulario">
+        <p> <input type="button" name="boton" id="boton" value="Mostrar"/> </p>
+	</form>
+	<div id="eventos">
+        <div id="texto"></div>
+    </div>
+</body>
+<script type="text/javascript">
+	function eventoRaton(evento) {
+		event.preventDefault(); //Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento 
+		var statusBoton = document.getElementById("boton").value;
+		var tipo = evento.type;
+        document.getElementById("texto").innerHTML += ( tipo + "<br>" ) ;
+	}
+
+	window.onload = function() {
+		document.formulario.boton.addEventListener('mousedown', eventoRaton);
+		document.formulario.boton.addEventListener('mouseup', eventoRaton);
+		document.formulario.boton.addEventListener('click', eventoRaton);
+		document.formulario.boton.addEventListener('contextmenu', eventoRaton);
+        document.formulario.boton.addEventListener('dblclick', eventoRaton);
+    }
+</script>
+</html>
