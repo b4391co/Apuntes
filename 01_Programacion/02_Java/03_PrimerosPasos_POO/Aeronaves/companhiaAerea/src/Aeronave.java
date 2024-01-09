@@ -1,4 +1,4 @@
-public class Aeronave {
+public abstract class Aeronave {
     private String id;
     private int numPasajeros;
     private int autonomiaMaxmia;
@@ -7,7 +7,7 @@ public class Aeronave {
     public Aeronave(String id, int numPasajeros, int autonomiaMaxmia, String modelo) {
         this.id = id;
         this.numPasajeros = numPasajeros;
-        this.autonomiaMaxmia = autonomiaMaxmia;
+        this.autonomiaMaxmia = autonomiaMaxima;
         this.modelo = modelo;
     }
 
@@ -43,4 +43,7 @@ public class Aeronave {
         this.modelo = modelo;
     }
 
+    public void volar() {
+        
+    }
 }
