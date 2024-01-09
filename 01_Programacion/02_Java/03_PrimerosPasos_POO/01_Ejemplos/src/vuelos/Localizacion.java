@@ -1,3 +1,5 @@
+package vuelos;
+
 public class Localizacion {
     private String ciudad;
     private String direccion;

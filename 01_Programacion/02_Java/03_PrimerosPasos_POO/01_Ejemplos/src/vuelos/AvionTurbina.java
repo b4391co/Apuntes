@@ -1,3 +1,5 @@
+package vuelos;
+
 public class AvionTurbina {
     public int numTurbnas;
     public int numMotores;

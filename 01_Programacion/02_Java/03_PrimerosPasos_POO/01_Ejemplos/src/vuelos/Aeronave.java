@@ -1,3 +1,5 @@
+package vuelos;
+
 public abstract class Aeronave {
     private String id;
     private int numPasajeros;

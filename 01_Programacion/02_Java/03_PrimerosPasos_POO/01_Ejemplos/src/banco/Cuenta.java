@@ -1,3 +1,5 @@
+package Banco;
+
 public class Cuenta {
     public String titular;
     public double cantidad;
