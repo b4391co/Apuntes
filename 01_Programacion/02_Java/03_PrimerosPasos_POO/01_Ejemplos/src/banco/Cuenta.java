@@ -1,24 +1,24 @@
 package banco;
 
 public class Cuenta {
-    public String titular;
-    public double cantidad;
+    private Titular titular;
+    private double cantidad;
 
-    public Cuenta(String titular) {
+    public Cuenta(Titular titular) {
         this.titular = titular;
         this.cantidad = 0;
     }
 
-    public Cuenta(String titular, double cantidad) {
+    public Cuenta(Titular titular, double cantidad) {
         this.titular = titular;
         this.cantidad = cantidad;
     }
 
-    public String getTitular() {
+    public Titular getTitular() {
         return this.titular;
     }
 
-    public void setTitular(String titular) {
+    public void setTitular(Titular titular) {
         this.titular = titular;
     }
 
