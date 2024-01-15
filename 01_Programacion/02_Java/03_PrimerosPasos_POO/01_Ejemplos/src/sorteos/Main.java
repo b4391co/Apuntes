@@ -6,14 +6,6 @@ public class Main {
         Sorteo m1 = new Moneda();
 
         d1.lanzar();
-        d1.lanzar();
-        d1.lanzar();
-        d1.lanzar();
-        d1.lanzar();
         m1.lanzar();
-        m1.lanzar();
-        m1.lanzar();
-        m1.lanzar();
-        
     }
 }
