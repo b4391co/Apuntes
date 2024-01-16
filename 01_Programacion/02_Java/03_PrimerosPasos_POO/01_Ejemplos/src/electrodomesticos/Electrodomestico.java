@@ -1,4 +1,8 @@
 package electrodomesticos;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Electrodomestico {
     private double precioBase;
@@ -6,24 +10,27 @@ public class Electrodomestico {
     private char consumoEnergetico;
     private double peso;
 
+    private final char CONSUMO_DEFAULT = 'F';
+    private final String COLOR_DEFAULT = "blanco";
+
     public Electrodomestico() {
         this.precioBase = 100;
-        this.Color = "blanco";
-        this.consumoEnergetico = 'F';
+        this.Color = COLOR_DEFAULT;
+        this.consumoEnergetico = CONSUMO_DEFAULT;
         this.peso = 5;
     }
 
     public Electrodomestico(double precioBase, double peso) {
         this.precioBase = precioBase;
-        this.Color = "blanco";
-        this.consumoEnergetico = 'F';
+        this.Color = COLOR_DEFAULT;
+        this.consumoEnergetico = CONSUMO_DEFAULT;
         this.peso = peso;
     }
 
     public Electrodomestico(double precioBase, String Color, char consumoEnergetico, double peso) {
         this.precioBase = precioBase;
-        this.Color = Color;
-        this.consumoEnergetico = consumoEnergetico;
+        this.Color = comprobarColor(Color);
+        this.consumoEnergetico = comprobarConsumoEnergetico(consumoEnergetico);
         this.peso = peso;
     }
 
@@ -60,11 +67,23 @@ public class Electrodomestico {
     }
 
     private char comprobarConsumoEnergetico(char letra) {
-        return (letra == 'A' || letra == 'B' || letra == 'C' || letra == 'D' || letra == 'E' || letra == 'F' ) ? letra : 'F';
+        return ("ABCDEFabcdef".indexOf(letra) != -1 ) ? Character.toUpperCase(letra) : CONSUMO_DEFAULT;
     }
     
-    private char comprobarColor(String color) {
-        return (color.toLowerCase() == "blanco" || ) ? color : "blanco";
+    private String comprobarColor(String color) {
+        List<String> colores = Arrays.asList("blanco", "negro", "rojo", "azul", "gris");
+        return colores.contains(color.toLowerCase()) ? color.toLowerCase() : COLOR_DEFAULT;
     }
-    
+    public void precioFinal() {
+        
+        HashMap<Character, Double> precioConsumo = new HashMap<>();
+        precioConsumo.put('A',100.0);
+        precioConsumo.put('B',80.0); 
+        precioConsumo.put('C',60.0); 
+        precioConsumo.put('D',50.0); 
+        precioConsumo.put('E',30.0); 
+        precioConsumo.put('F', 10.0);
+        
+        System.out.println(this.precioBase + precioConsumo.get(this.consumoEnergetico)); 
+    }
 }
