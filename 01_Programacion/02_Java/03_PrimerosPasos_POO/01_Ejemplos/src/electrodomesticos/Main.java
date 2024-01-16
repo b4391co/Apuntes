@@ -6,5 +6,9 @@ public class Main {
         eArray[0] = new Electrodomestico(50, "rojo", 'A', 50);
         eArray[1] = new Electrodomestico(150, "blanco", 'F', 10);
         eArray[2] = new Electrodomestico(70, "azul", 'D', 30);
+        eArray[3] = new Lavavajillas(300, "blanco", 'B', 20, 10);
+        eArray[3] = new Lavavajillas(200, "negro", 'B', 20, 10);
+        eArray[3] = new Lavavajillas(11, "blanco", 'B', 20, 10);
+
     }
 }
