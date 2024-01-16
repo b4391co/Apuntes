@@ -3,7 +3,6 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
 public class Electrodomestico {
     private double precioBase;
     private String Color;
@@ -74,7 +73,7 @@ public class Electrodomestico {
         List<String> colores = Arrays.asList("blanco", "negro", "rojo", "azul", "gris");
         return colores.contains(color.toLowerCase()) ? color.toLowerCase() : COLOR_DEFAULT;
     }
-    public void precioFinal() {
+    public Double precioFinal() {
         
         HashMap<Character, Double> precioConsumo = new HashMap<>();
         precioConsumo.put('A',100.0);
@@ -84,6 +83,6 @@ public class Electrodomestico {
         precioConsumo.put('E',30.0); 
         precioConsumo.put('F', 10.0);
         
-        System.out.println(this.precioBase + precioConsumo.get(this.consumoEnergetico)); 
+        return (this.precioBase + precioConsumo.get(this.consumoEnergetico)); 
     }
 }
