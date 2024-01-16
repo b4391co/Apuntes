@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Tarea 1 - UD5</title>
+</head>
+<style>
+	form {
+		font-family: Verdana, Arial, sans-serif;
+		margin: auto;
+		background: rgb(6, 105, 204);
+		color: white;
+		font-size: 14px;
+		padding: 30px;
+		width: 450px;
+	}
+
+	input {
+		font-size: 14px;
+		background: white;
+		border: solid 1px LightSteelBlue;
+		border-radius: 3px;
+		float: right;
+		margin-right: 100px;
+		width: 50px;
+	}
+
+	button{
+		font-size: 14px;
+		background: white;
+		border: solid 1px LightSteelBlue;
+		border-radius: 3px;
+		
+	}
+
+	ul li {
+		line-height: 25px;
+		list-style: none;
+	}
+
+	div {
+		display: flex;
+		justify-content: center;
+	}
+</style>
+
+
+<body>
+	<form name="formulario">
+		<ul>
+			<li>
+				<label for="name">Filas:</label>
+				<input type="number" id="fila" min="0" name="filas" />
+			</li>
+			<li>
+				<label for="mail">Columnas</label>
+				<input type="number" id="columna" min="0" name="columnas" />
+			</li>
+			<li>
+				<b><button type="button" name="crear" id="crear">Crear tabla</button></b>
+				<u id="anhadirBoton"></u>
+			</li>
+		</ul>
+
+	</form>
+	<br><br>
+	<hr>
+	<br><br>
+	<div id="resultado"></div>
+</body>
+<script>
+	document.getElementById("crear").addEventListener("click", () => {
+		oncontextmenu = (event) => {};
+		var columnas = document.getElementById("columna").value;
+		var filas = document.getElementById("fila").value;
+
+		let tabla = document.createElement("table");
+		tabla.setAttribute("id", "tablaResultado");
+		tabla.style.border = "1px solid blue"
+		tabla.setAttribute("oncontextmenu", "return false;");
+		for (let i = 0; i < filas; i++) {
+			let tr = document.createElement("tr");
+			tr.setAttribute("id","i" + i);
+			tr.addEventListener("dblclick",eliminarFila)
+			tr.addEventListener("contextmenu", cambiarColor)
+			tabla.appendChild(tr);
+			for (let j = 0; j < columnas; j++) {
+				let td = document.createElement("td");
+				td.setAttribute("id","j" + j);
+				td.style.border = "1px solid blue";
+				td.style.fontSize = "30px";
+				td.innerHTML = i;
+				td.addEventListener("click",cambiarFondo);
+				tr.appendChild(td);
+			}
+		}
+		document.getElementById("resultado").append(tabla);
+
+		let botonBorrar = document.createElement("button");
+		botonBorrar.setAttribute("type","button");
+		botonBorrar.setAttribute("id","botonBorrar");
+		botonBorrar.innerHTML = "Borrar Tabla";
+		document.getElementById("anhadirBoton").append(botonBorrar);
+		document.getElementById("crear").disabled = true;
+	});
+
+	document.getElementById("botonBorrar").addEventListener("click", () => {
+		console.log("eee");
+		document.getElementById("crear").disabled = false;
+		document.getElementById("botonBorrar").remove();
+		document.getElementById("tablaResultado").remove();
+	})
+
+	function cambiarColor() {
+		this.style.color = "red";
+	}
+
+	function cambiarFondo() {
+		this.style.background = "blue";
+	}
+	function eliminarFila() {
+		this.remove();
+	}
+</script>
+</html>

@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
     <style>
-        input,#texto{
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
-    <form>
-        <input id="texto" type="text" value=""/>
-    </form>
+    <div class="mb-3">
+        <label for="" class="form-label">Numero</label>
+        <input type="text" class="form-control" name="" id="texto" aria-describedby="helpId"/>
+    </div>
 </body>
 <script>
-        document.onkeypress = function(evento) {
-            console.log(evento.keyCode);
-            if(evento.keyCode >= 48 && evento.keyCode <= 57){
-                document.getElementById("texto").value += (evento.keyCode - 48);
+        document.onkeyup = function(evento) {
+            console.log(evento.key);
+            if(!(evento.key > 0 || evento.key < 9)){
+                document.getElementById("texto").value = document.getElementById("texto").value.substring(0, texto.value.length - 1);
             }
         }
 </script>
