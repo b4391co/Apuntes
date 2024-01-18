@@ -10,7 +10,9 @@ public class AlumnoInternacional extends Alumno {
     }
 
     public void mostrarInfo() {
+        if (this.nombre != null) 
         System.out.println(
+            "\n===========================" +
             "\nNombre:  " + this.nombre +
             "\nedad:    " + this.edad +
             "\ndni:     " + this.dni +

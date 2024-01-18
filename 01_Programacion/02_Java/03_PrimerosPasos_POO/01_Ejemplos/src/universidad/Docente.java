@@ -10,7 +10,9 @@ public class Docente extends Persona{
 
     @Override
     public void mostrarInfo() {
+        if (this.nombre != null) 
         System.out.println(
+            "\n===========================" +
             "\nNombre:  " + this.nombre +
             "\nedad:    " + this.edad +
             "\ndni:     " + this.dni +

@@ -12,7 +12,9 @@ public class Alumno extends Persona {
 
     @Override
     public void mostrarInfo() {
-        System.out.println(
+        if (this.nombre != null) 
+            System.out.println(
+            "\n===========================" +
             "\nNombre:  " + this.nombre +
             "\nedad:    " + this.edad +
             "\ndni:     " + this.dni +

@@ -12,7 +12,7 @@ public abstract class Persona {
         if (sexoValido(Character.toUpperCase(sexo))) this.sexo = Character.toUpperCase(sexo);
         else return;
         if(MayorDeEdad(edad)) this.edad = edad;
-        else return;
+        else return; 
         this.nombre = nombre;
         this.dni = dni;
         this.peso = peso;

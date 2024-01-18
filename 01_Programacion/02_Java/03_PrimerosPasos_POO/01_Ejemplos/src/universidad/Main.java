@@ -1,5 +1,7 @@
 package universidad;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         Persona[] pArray = new Persona[7];
@@ -11,10 +13,6 @@ public class Main {
         pArray[5] = new AlumnoInternacional("Cristian Esteban", 20, "8f894b32", 'H', 60, 180, "Segundo", "pesca", "Indio");
         pArray[6] = new Alumno("Pepe V", 18, "12345678A", 'H', 60, 180, "Segunda","Pesca");
     
-        for (int i = 0; i < pArray.length; i++) {
-            System.out.println("================ " + (i+1) + " ================");
-            pArray[i].mostrarInfo();
-            System.out.println();
-        }
+        Arrays.stream(pArray).forEach(Persona::mostrarInfo);
     }
 }
