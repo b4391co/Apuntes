@@ -6,7 +6,7 @@ require_once 'util.php';
 if (!isUserLoggedIn()) {
     header("Location: login.php");
     exit;
-}
+} 
 ?>
 <!DOCTYPE html>
 <!--
