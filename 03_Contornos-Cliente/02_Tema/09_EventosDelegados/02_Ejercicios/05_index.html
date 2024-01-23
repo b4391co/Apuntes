@@ -59,7 +59,7 @@
 			</li>
 			<li>
 				<b><button type="button" name="crear" id="crear">Crear tabla</button></b>
-				<u id="anhadirBoton"></u>
+				<b><button type="button" name="eliminar" id="eliminar" disabled>eliminar tabla</button></b>
 			</li>
 		</ul>
 
@@ -82,8 +82,6 @@
 		for (let i = 0; i < filas; i++) {
 			let tr = document.createElement("tr");
 			tr.setAttribute("id","i" + i);
-			tr.addEventListener("dblclick",eliminarFila)
-			tr.addEventListener("contextmenu", cambiarColor)
 			tabla.appendChild(tr);
 			for (let j = 0; j < columnas; j++) {
 				let td = document.createElement("td");
@@ -92,35 +90,32 @@
 				td.style.fontSize = "30px";
 				td.innerHTML = i;
 				td.addEventListener("click",cambiarFondo);
+				td.addEventListener("dblclick",eliminarFila)
+				td.addEventListener("contextmenu", cambiarColor)
 				tr.appendChild(td);
 			}
 		}
 		document.getElementById("resultado").append(tabla);
-
-		let botonBorrar = document.createElement("button");
-		botonBorrar.setAttribute("type","button");
-		botonBorrar.setAttribute("id","botonBorrar");
-		botonBorrar.innerHTML = "Borrar Tabla";
-		document.getElementById("anhadirBoton").append(botonBorrar);
 		document.getElementById("crear").disabled = true;
+		document.getElementById("eliminar").disabled = false;
 	});
 
-	document.getElementById("botonBorrar").addEventListener("click", () => {
+	document.getElementById("eliminar").addEventListener("click", () => {
 		console.log("eee");
 		document.getElementById("crear").disabled = false;
-		document.getElementById("botonBorrar").remove();
+		document.getElementById("eliminar").disabled = true;
 		document.getElementById("tablaResultado").remove();
 	})
 
-	function cambiarColor() {
-		this.style.color = "red";
+	function cambiarColor(evt) {
+		evt.target.parentNode.style.color = "red";
 	}
 
-	function cambiarFondo() {
-		this.style.background = "blue";
+	function cambiarFondo(evt) {
+		evt.target.style.background = "blue";
 	}
-	function eliminarFila() {
-		this.remove();
+	function eliminarFila(evt) {
+		evt.target.parentNode.remove();
 	}
 </script>
 </html>
