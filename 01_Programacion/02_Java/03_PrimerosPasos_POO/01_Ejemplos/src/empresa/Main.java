@@ -15,5 +15,6 @@ public class Main {
         empleadoArray[6] = new Tecnico("Pepe VII", 14000, LocalDate.of(2004, 01,01), "area de Pepes", "nave tres", "sectres");
 
         Arrays.stream(empleadoArray).forEach(empleado -> System.out.println(empleado.toString()));
+        
     }
 }
