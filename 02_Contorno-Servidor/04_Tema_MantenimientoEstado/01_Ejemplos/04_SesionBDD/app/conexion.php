@@ -24,8 +24,8 @@ function consultarProducto($id)
     $producto = $stmt1->fetch(PDO::FETCH_OBJ);
     $stmt1 = null;
     return $producto;
-
 }
+
 function cerrar(&$con){
     $con = null;
 }
