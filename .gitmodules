@@ -7,3 +7,6 @@
 [submodule "04_Desenvolvemento/01_Tema/02_Yatzy/Yatzy"]
 	path = 04_Desenvolvemento/01_Tema/02_Yatzy/Yatzy
 	url = git@github.com:b4391co/Yatzy.git
+[submodule "04_Desenvolvemento/01_Tema/03_Bowling/BolosPairPrograming"]
+	path = 04_Desenvolvemento/01_Tema/03_Bowling/BolosPairPrograming
+	url = git@github.com:Armadovich/BolosPairPrograming.git
