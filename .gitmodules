@@ -4,3 +4,6 @@
 [submodule "02_Contorno-Servidor/04_Tema_MantenimientoEstado/02_Ejercicios/CS_Actividad_5_1"]
 	path = 02_Contorno-Servidor/04_Tema_MantenimientoEstado/02_Ejercicios/CS_Actividad_5_1
 	url = git@github.com:b4391co/CS_Actividad_5_1.git
+[submodule "04_Desenvolvemento/01_Tema/02_Yatzy/Yatzy"]
+	path = 04_Desenvolvemento/01_Tema/02_Yatzy/Yatzy
+	url = git@github.com:b4391co/Yatzy.git
