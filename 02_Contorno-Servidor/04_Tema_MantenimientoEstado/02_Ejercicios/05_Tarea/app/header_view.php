@@ -3,7 +3,8 @@
         <?php
         if (isset($_SESSION['cesta'])) {
             $cantidad = count($_SESSION['cesta']);
-            echo "<input type='text' disabled class='form-control mr-2 bg-transparent text-white' value='$cantidad' size='2px'>";
+            $count = array_sum(array_column($_SESSION['cesta'], 'unidades'));
+            echo "<input type='text' disabled class='form-control mr-2 bg-transparent text-white' value='$count' size='2px'>";
         } else {
             echo "<input type='text' disabled class='form-control mr-2 bg-transparent text-white' value='0' size='2px'>";
         }
