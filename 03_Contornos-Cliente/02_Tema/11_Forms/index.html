@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Validacion Formulario</title>
+        <style type="text/css">
+            label{
+                width: 150px;
+                float:left;
+                margin-bottom:5px;     
+            }
+            input,select {
+                width:150px;
+                float:left;
+                margin-bottom:5px;
+            }
+            fieldset{
+                background:#66CCCC;
+                width:350px;
+                border: thick solid #306;
+            }
+            legend{
+                border-top-width: medium;
+                border-right-width: medium;
+                border-bottom-width: medium;
+                border-left-width: medium;
+                border-top-style: solid;
+                border-right-style: solid;
+                border-bottom-style: solid;
+                border-left-style: solid;
+                background-color: #FFF;     
+            }
+            #mensajes{
+                float: left;
+                background:#33FF33;
+                width: 325px;
+            }
+            #errores{
+                float: left;
+                background:#FF6633;
+                width: 325px;
+            }
+            #intentos{
+                float: left;
+                background:#CCFF33;
+                width: 325px;
+            }
+            .error{
+                border: solid 2px #FF0000;
+            }
+        </style>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Formulario</legend>
+            <form name="formulario" id="formulario" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" />
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" name="apellidos" id="apellidos" />
+                <label for="edad">Edad:</label>
+                <input name="edad" type="text" id="edad" maxlength="3" />
+                <label for="nif">NIF:</label>
+                <input name="nif" type="text" id="nif" />
+                <label for="email">E-mail:</label>
+                <input name="email" type="text" id="email" />
+                <label for="fecha">Fecha Nacimiento:</label>
+                <input name="fecha" type="text" id="fecha" />
+                <label for="telefono">Teléfono:</label>
+                <input name="telefono" type="text" id="telefono" maxlength="9"/>
+                <input type="reset" name="limpiar" id="button" value="Limpiar" />
+                <input type="submit" name="enviar" id="enviar" value="Enviar" />
+            </form> 
+            <div id="errores"></div>
+            <div id="intentos"></div>
+        </fieldset>
+        <script type="text/javascript">
+function iniciar() {
+    document.getElementById("enviar").onclick = comprobarDatos;
+}
+function comprobarDatos(evt) {
+    evt.preventDefault();
+    let errores = comprobarErrores();
+
+    let divErrores = document.createElement('div');
+
+    if (errores.length > 0) {
+        for (let i = 0; i < errores.length; i++) {
+            let divError = document.createElement('p');  // Cambiado a 'p' en lugar de 'div'
+            divError.innerHTML = errores[i];
+            divErrores.appendChild(divError);
+        }
+    }
+    document.getElementById('errores').appendChild(divErrores);
+}
+
+function comprobarErrores(){
+    let errores = [];
+    let nombre = document.getElementById('nombre');
+    let apellido = document.getElementById('apellidos');
+    let edad = document.getElementById('edad');
+    let nif = document.getElementById('nif');
+    let email = document.getElementById('email');
+    let fecha = document.getElementById('fecha');
+    let tlf = document.getElementById('telefono');
+
+    if (!soloLetras(nombre.value) || nombre.value === "")
+        errores.push('Nombre invalido');
+    if (!soloLetras(apellido.value) || apellido.value === "")
+        errores.push('apellido invalido');
+    if (isNaN(edad.value) || edad.value === "" || (edad.value <= 0 && edad.value >= 105))
+        errores.push('Edad invalida');
+    if(!comprobarNif(nif.value))
+        errores.push('formato dni Invalido');
+    if(!comprobarEmail(email.value))
+        errores.push('formato email Invalido');
+    if(!comprobarTlf(tlf.value))
+        errores.push('formato telefono Invalido');
+    return errores;
+}
+
+function comprobarNif (nif) {
+    return (nif.match(/^\d{8}-[A-Z]$/));
+}
+
+function comprobarEmail (email) {
+    return (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/));
+}
+
+function comprobarTlf (tlf) {
+    return (tlf.match(/^\d{9}$/));
+}
+
+function soloLetras(cadena) {
+    return /^[a-zA-Z]+$/.test(cadena);
+}
+
+window.onload = iniciar;
+        </script>
+    </body>
+</html>
+
