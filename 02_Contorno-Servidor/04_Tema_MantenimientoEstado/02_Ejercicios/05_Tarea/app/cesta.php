@@ -8,7 +8,7 @@ require_once 'conexion.php';
 if (isset($_SESSION['cesta'])) {
     foreach ($_SESSION['cesta'] as $k => $v) {
         $producto = consultarProducto($k);
-        $listado[$k] = [$producto->nombre, $producto->pvp];
+        $listado[$k] = [$producto->nombre, $producto->pvp, $v['unidades']];
         $producto = null;
     }
     cerrar($conProyecto);
@@ -43,13 +43,28 @@ if (isset($_SESSION['cesta'])) {
                 echo "<p class='card-text'>Carrito Vacio</p>";
             } else {
                 $total = 0;
-                echo "<p class='card-text'>";
-                echo "<ul>";
-                foreach ($listado as $k => $v) {
-                    echo "<li>$v[0], PVP ($v[1]) €.</li>";
-                    $total += $v[1];
+                ?>
+                <table class='table table-striped table-dark mt-3'>
+                    <thead>
+                    <tr class="text-center">
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio Unidad</th>
+                        <th scope="col">Unidades</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                <?php
+                foreach ($listado as $key => $value) {
+                    echo "<tr>";
+                    echo "<td>$value[0]</td>";
+                    echo "<td>$value[1] €</td>";
+                    echo "<td>$value[2]</td>";
+                    echo "<td>" . $value[1]*$value[2] . "</td>";
+                    $total += $value[1];
+                    echo "</tr>";
                 }
-                echo "</ul></p>";
+                echo "</table>";
                 echo "<hr style='border:none; height:2px; background-color: white'>";
                 echo "<p class='card-text'><b>Total:</b><span class='ml-3'>$total (€)</span></p>";
             }
