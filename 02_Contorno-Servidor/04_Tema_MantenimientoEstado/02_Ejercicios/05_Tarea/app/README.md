@@ -13,7 +13,7 @@
 
 #### a) valor de la directiva `session.auto_start`
 
-<div align='center'><img src='./.assets/20240131164627.png'/></div>
+<div align='center'><img src='./.assets/20240131171232.png' height='250px'/></div>
 
 #### b) antes de ejecutarse `session_start()`, ¿existe `$_SESSION`? ¿Por qué?
 
