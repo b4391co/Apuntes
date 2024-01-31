@@ -7,7 +7,7 @@
 
 #### el contenido del array superglobal $_COOKIE. Explica en la propia imagen por qué no está presente el código de familia que se acaba de añadir a la cookie
 
-
+<div align='center'><img src='./.assets/20240131011531.png'/></div>
 
 ## 6- Sitúa puntos de ruptura en la instrucción session_start(). Muestra en sendas capturas:
 
