@@ -11,8 +11,17 @@
 
 ## 6- Sitúa puntos de ruptura en la instrucción session_start(). Muestra en sendas capturas:
 
-#### a) valor de la directiva session.auto_start
+#### a) valor de la directiva `session.auto_start`
 
-#### b) antes de ejecutarse session_start(), ¿existe \$_SESSION? ¿Por qué?
+<div align='center'><img src='./.assets/20240131164627.png'/></div>
 
-#### c) justo después de ejecutarse session_start() ¿existe $_SESSION?¿Está vacía?¿Por qué?
+#### b) antes de ejecutarse `session_start()`, ¿existe `$_SESSION`? ¿Por qué?
+
+<div align='center'><img src='./.assets/20240131170414.png'/></div>
+
+Al tener `session.auto_start=0` no se inicia al ejecutar el script, por lo tanto la superglobal `$_SESSION` se inicializa cuando se ejecute ` session_start()`.
+#### c) justo después de ejecutarse `session_start()` ¿existe `$_SESSION`?¿Está vacía?¿Por qué?
+
+<div align='center'><img src='./.assets/20240131170445.png'/></div>
+
+Después de ejecutarse `session_start()`, se espera que `$_SESSION` exista.
