@@ -1,0 +1,21 @@
+<?php
+class Cuadrado extends Figura
+{
+    private float $lado;
+
+    private Point $bottonLeft;
+
+    public function __construct(string $nombre, float $lado, Point $bottomLeft, int $num_lados = 0)
+    {
+
+        parent::__construct($nombre, $num_lados);
+        $this->bottonLeft = $bottomLeft;
+        $this->lado = $lado;
+
+    }
+    public function calcularArea()
+    {
+        parent::calcularArea();
+        return pow($this->lado, 2);
+    }
+}
