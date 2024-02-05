@@ -1,9 +1,9 @@
-package interfaces.vehiculosinterfaz;
+package interfaces.vehiculos;
 
-public class Motocicleta implements Vehiculo{
+public class Turismo implements Vehiculo {
     private int velocidad;
 
-    public Motocicleta() {
+    public Turismo() {
         this.velocidad = 0;
     }
 
@@ -13,7 +13,7 @@ public class Motocicleta implements Vehiculo{
 
     @Override
     public void acelerar(int nuevaVelocidad) {
-        this.velocidad += nuevaVelocidad;        
+        this.velocidad += (velocidad + nuevaVelocidad < VELOCIDAD_MAX)? nuevaVelocidad: VELOCIDAD_MAX;
     }
 
     @Override

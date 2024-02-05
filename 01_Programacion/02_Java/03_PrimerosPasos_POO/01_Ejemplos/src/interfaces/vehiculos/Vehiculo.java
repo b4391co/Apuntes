@@ -1,4 +1,4 @@
-package interfaces.vehiculosinterfaz;
+package interfaces.vehiculos;
 
 public interface Vehiculo {
     int VELOCIDAD_MAX = 120;

@@ -1,4 +1,4 @@
-package interfaces.vehiculosinterfaz;
+package interfaces.vehiculos;
 
 public class Main {
     public static void main(String[] args) {
