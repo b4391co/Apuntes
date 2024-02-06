@@ -1,10 +1,11 @@
 package colecciones.conjuntos;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class ConjuntoOrdenado02 {
+public class TreeSet02 {
     public static void main(String[] args) {
         Set<Integer> conjunto1 = new TreeSet<>();
         Set<Integer> conjunto2 = new TreeSet<>();
@@ -19,6 +20,9 @@ public class ConjuntoOrdenado02 {
         conjunto2.add(-3);
         conjunto2.add(-10);
         conjunto2.add(9);
+
+        Iterator<Integer> it1 = conjunto1.iterator();
+        Iterator<Integer> it2 = conjunto2.iterator();
 
         System.out.println("\n\n");
         System.out.println(conjunto1.stream().mapToInt(Integer::intValue).sum());
