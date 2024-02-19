@@ -15,13 +15,29 @@ public class Producto {
         this.localizacion = localizacion;
     }
 
-    public int getIdentificador() { return identificador; }
+    public int getIdentificador() {
+        return identificador;
+    }
 
-    public String getNombre() { return nombre; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public double getPrecio() { return precio; }
+    public double getPrecio() {
+        return precio;
+    }
 
-    public String getMarca() { return marca; }
+    public String getMarca() {
+        return marca;
+    }
 
-    public String getLocalizacion() { return localizacion; }
+    public String getLocalizacion() {
+        return localizacion;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto [identificador=" + identificador + ", nombre=" + nombre + ", precio=" + String.format("%.2f", precio) + ", marca="
+                + marca + ", localizacion=" + localizacion + "]";
+    }
 }
