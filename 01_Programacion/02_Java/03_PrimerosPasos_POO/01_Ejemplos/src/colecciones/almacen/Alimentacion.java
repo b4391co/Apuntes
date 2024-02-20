@@ -10,4 +10,11 @@ public class Alimentacion extends Producto {
         this.categoria = categoria;
         this.gluten = gluten;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " - Alimentacion [categoria=" + categoria + ", gluten=" + gluten + "]";
+    }
+
+    
 }

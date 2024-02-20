@@ -13,4 +13,9 @@ public class AguaMineral extends Bebida{
         this.origen = origen;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " - AguaMineral [origen=" + origen + "]";
+    }
+
 }

@@ -16,4 +16,10 @@ public class Refresco extends Bebida{
         this.porcAzucar = porcAzucar;
         this.promocion = promocion;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " - Refresco [porcAzucar=" + porcAzucar + ", promocion=" + promocion + "]";
+    }
+    
 }
