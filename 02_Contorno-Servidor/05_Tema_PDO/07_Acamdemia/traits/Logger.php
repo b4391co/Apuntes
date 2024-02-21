@@ -1,6 +1,6 @@
 <?php
-namespace traits\Logger;
-class Logger {
+namespace traits;
+trait Logger {
     public function log(string $msg)
     {
         $info = [
