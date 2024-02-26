@@ -10,8 +10,8 @@ public class Vehiculo {
     private int anhoFabricacion;
 
     public Vehiculo(String matricula, String color, String modelo, int anhoFabricacion){
-        this.matricula = (validarMatricula(matricula)) ? matricula : null;
-        this.color = (validarColor(color)) ? color : null;
+        this.matricula = validarMatricula(matricula);
+        this.color = validarColor(color);
         this.modelo = modelo;
         this.anhoFabricacion = anhoFabricacion;
     }
@@ -48,20 +48,20 @@ public class Vehiculo {
         this.anhoFabricacion = anhoFabricacion;
     }
 
-    private boolean validarColor(String c) {
+    private String validarColor(String c) {
         try {
             String[] colores = { "rojo", "azul", "blanco", "gris", "negro" };
             List<String> listaColores = Arrays.asList(colores);
             if(!listaColores.contains(c.toLowerCase()))
                 throw new ExcepcionesVehiculo(3);
-            return true;
+            return c;
         } catch (ExcepcionesVehiculo e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return null;
     }
 
-    private boolean validarMatricula(String m) {
+    private String validarMatricula(String m) {
         try {
             if (m.length() != 7)
                 throw new ExcepcionesVehiculo(0);
@@ -69,11 +69,11 @@ public class Vehiculo {
                 throw new ExcepcionesVehiculo(1);
             if (!isAlpha(m.substring(4, 7)))
                 throw new ExcepcionesVehiculo(2);
-            return true;
+            return m;
         } catch (ExcepcionesVehiculo e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return null;
     }
 
     public static boolean isNumeric(String str) {
@@ -88,4 +88,12 @@ public class Vehiculo {
     public static boolean isAlpha(String s) {
         return s != null && s.matches("^[a-zA-Z]*$");
     }
+
+    @Override
+    public String toString() {
+        return "Vehiculo [matricula=" + matricula + ", color=" + color + ", modelo=" + modelo + ", anhoFabricacion="
+                + anhoFabricacion + "]";
+    }
+
+    
 }
