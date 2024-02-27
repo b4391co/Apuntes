@@ -15,19 +15,6 @@ public abstract class Empleado {
         this.salario = salario;
     }
 
-    public static String verificarDni(String dni) {
-        try {
-            if (dni.length() != 9)
-                throw new ExcepcionDni("logitud invalida");
-            if (!Character.isAlphabetic(dni.charAt(dni.length())))
-                throw new ExcepcionDni("no contine letra");
-            return dni;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
     public String getDni() {
         return dni;
     }

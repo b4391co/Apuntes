@@ -45,26 +45,42 @@ public class Main {
         System.out.println("( 1 ) Comercial\t( 2 ) Repartidor");
         int opcion = sc.nextInt();
         System.out.println("dni: ");
-        String dni = sc.next();
+        String dni = verificarDni(sc.next());
+        System.out.println("d." + dni);
         System.out.println("nombre: ");
         String nombre = sc.next();
         System.out.println("edad: ");
         int edad = sc.nextInt();
         System.out.println("salario: ");
         double salario = sc.nextDouble();
-        switch (opcion) {
-            case 1:
-                System.out.println("comision: ");
-                double comision = sc.nextDouble();
-                empleados.add(new Comercial(dni, nombre, edad, salario, comision));
-                break;
-            case 2:
-                System.out.println("comision: ");
-                int zona = sc.nextInt();
-                empleados.add(new Comercial(dni, nombre, edad, salario, zona));
-            default:
-                System.out.println("valor incorrecto");
-                break;
+        if ( dni != null ){
+            switch (opcion) {
+                case 1:
+                    System.out.println("comision: ");
+                    double comision = sc.nextDouble();
+                    empleados.add(new Comercial(dni, nombre, edad, salario, comision));
+                    break;
+                case 2:
+                    System.out.println("comision: ");
+                    int zona = sc.nextInt();
+                    empleados.add(new Comercial(dni, nombre, edad, salario, zona));
+                default:
+                    System.out.println("valor incorrecto");
+                    break;
+            }
         }
+    }
+
+    public static String verificarDni(String dni) {
+        try {
+            if (dni.length() != 9)
+                throw new ExcepcionDni("logitud invalida");
+            if (!Character.isAlphabetic(dni.charAt(dni.length() - 1)))
+                throw new ExcepcionDni("no contine letra");
+            return dni;
+        } catch (ExcepcionDni e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }
