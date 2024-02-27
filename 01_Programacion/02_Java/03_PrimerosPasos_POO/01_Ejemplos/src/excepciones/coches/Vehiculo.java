@@ -9,9 +9,9 @@ public class Vehiculo {
     private String modelo;
     private int anhoFabricacion;
 
-    public Vehiculo(String matricula, String color, String modelo, int anhoFabricacion){
-        this.matricula = validarMatricula(matricula);
-        this.color = validarColor(color);
+    public Vehiculo(String matricula, String color, String modelo, int anhoFabricacion) throws ExcepcionesVehiculo{
+        validarMatricula(matricula);
+        validarColor(color);
         this.modelo = modelo;
         this.anhoFabricacion = anhoFabricacion;
     }
@@ -48,32 +48,25 @@ public class Vehiculo {
         this.anhoFabricacion = anhoFabricacion;
     }
 
-    private String validarColor(String c) {
-        try {
-            String[] colores = { "rojo", "azul", "blanco", "gris", "negro" };
-            List<String> listaColores = Arrays.asList(colores);
-            if(!listaColores.contains(c.toLowerCase()))
-                throw new ExcepcionesVehiculo(3);
-            return c;
-        } catch (ExcepcionesVehiculo e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+    private void validarColor(String c) throws ExcepcionesVehiculo {
+        String[] colores = { "rojo", "azul", "blanco", "gris", "negro" };
+        List<String> listaColores = Arrays.asList(colores);
+        if(!listaColores.contains(c.toLowerCase()))
+            throw new ExcepcionesVehiculo(ExcepcionesVehiculo.COLOR);
+        else
+            this.color = c;
+
     }
 
-    private String validarMatricula(String m) {
-        try {
-            if (m.length() != 7)
-                throw new ExcepcionesVehiculo(0);
-            if (!isNumeric(m.substring(0, 4)))
-                throw new ExcepcionesVehiculo(1);
-            if (!isAlpha(m.substring(4, 7)))
-                throw new ExcepcionesVehiculo(2);
-            return m;
-        } catch (ExcepcionesVehiculo e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+    private void validarMatricula(String m) throws ExcepcionesVehiculo{
+        if (m.length() != 7)
+            throw new ExcepcionesVehiculo(ExcepcionesVehiculo.LONG_MATRICULA);
+        else if (!isNumeric(m.substring(0, 4)))
+            throw new ExcepcionesVehiculo(ExcepcionesVehiculo.NUM_MATRICULA);
+        else if (!isAlpha(m.substring(4, 7)))
+            throw new ExcepcionesVehiculo(ExcepcionesVehiculo.LETRAS_MATRICULA);
+        else
+            this.matricula = m;
     }
 
     public static boolean isNumeric(String str) {

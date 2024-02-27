@@ -3,7 +3,7 @@ package excepciones.empleados;
 public class Repartidor extends Empleado{
     private int zona;
 
-    public Repartidor(String dni, String nombre, int edad, double salario, int zona) {
+    public Repartidor(String dni, String nombre, int edad, int salario, int zona) throws ExcepcionEmpleado {
         super(dni, nombre, edad, salario);
         this.zona = zona;
     }

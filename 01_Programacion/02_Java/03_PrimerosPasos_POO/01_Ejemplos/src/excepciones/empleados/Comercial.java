@@ -1,9 +1,9 @@
 package excepciones.empleados;
 
 public class Comercial extends Empleado {
-    private double comision;
+    private int comision;
 
-    public Comercial(String dni, String nombre, int edad, double salario, double comision) {
+    public Comercial(String dni, String nombre, int edad, int salario, int comision) throws ExcepcionEmpleado {
         super(dni, nombre, edad, salario);
         this.comision = comision;
     }
