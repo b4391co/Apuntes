@@ -36,7 +36,7 @@ class UsuarioRepository extends BaseRepository implements IUsuarioRepository
     }
 
     function getUsuarios(): array {
-        $consulta = "SELECT u.*, r.id as idRol, r.name as rolName FROM usuario u,rol r, usuario_rol ur where ur.idUsuario = u.id AND ur.idRol = r.id;";
+        $consulta = "SELECT * FROM usuario";
 
         $pdostmt = $this->conn->prepare($consulta);
         $pdostmt->execute();

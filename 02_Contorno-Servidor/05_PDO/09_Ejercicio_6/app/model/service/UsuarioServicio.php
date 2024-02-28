@@ -13,10 +13,16 @@ class UsuarioServicio
         $this->usuarioRepository = $usuarioRepository;
         $this->rolRepository = $rolRepository;
     }
-	
+
     public function getUsuarios(): array
     {
-        return $this->usuarioRepository->getUsuarios();
+        $usuariosDB = $this->usuarioRepository->getUsuarios();
+        $usuarios = [];
+
+        foreach ( $usuariosDB as $usuarioDB ) {
+            $usuario = new Usuario();
+            $usuario = setId( $usuarioDB->getId() );
+        }
     }
 
     public function login(string $user, string $pwd, $rolId): ?Usuario
@@ -26,20 +32,13 @@ class UsuarioServicio
 
     public function getRoles(): array
     {
-
         $roles = $this->rolRepository->findAll();
-
         return $roles;
     }
 
     public function getRoleById(int $roleId): ?Rol
     {
-
         return $this->rolRepository->read($roleId);
-
-
-
-
     }
 
     private function isUserInRole(Usuario $usuario, int $roleId): bool
