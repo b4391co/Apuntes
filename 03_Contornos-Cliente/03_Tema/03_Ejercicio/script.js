@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     var btnGuardar = document.getElementById('guardar');
     var btnMostrar = document.getElementById('mostrar');
+    var btnBorrar = document.getElementById('borrar');
 
     var divAlumnos = document.getElementById('alumnos');
 
@@ -99,6 +100,13 @@ window.addEventListener('DOMContentLoaded', () => {
     var btnModificar = document.getElementById('modificar');
 
     function modificarDatos(evt) {
-        nombre.value = evt.target.parentNode.parentNode.firstChild.innerHTML;
+        nombre.value = evt.target.parentNode.parentNode.childNodes[1].innerHTML;
+        dni.value = evt.target.parentNode.parentNode.childNodes[0].innerHTML;
+        direccion.value = evt.target.parentNode.parentNode.childNodes[ 2 ].innerHTML;
     }
+
+    btnBorrar.addEventListener('click', () => {
+        let dniBorrar = document.getElementById('removeAlumno').value;
+        localStorage.removeItem(dniBorrar);
+    })
 })
