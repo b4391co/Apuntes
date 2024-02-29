@@ -31,11 +31,13 @@ class UsuarioServicio
         if(password_verify($pwd, $usuario->getPwdhash())) {
             $roles = $this->rolRepository->findRolesByUserId($usuario->getId());
             $usuario->setRoles($roles);
-            if ($this->isUserInRole($usuario, $rolId))
+            if ($rolId !== null && $this->isUserInRole($usuario, $rolId)) {
                 return $usuario;
+            }
         }
         return null;
     }
+    
 
     public function getRoles(): array
     {

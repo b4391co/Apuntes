@@ -49,9 +49,14 @@ class UsuarioController
 
             if ($usuario == null)
                 $loginViewData->setStatus(Util::OPERATION_NOK);
-            else
+            else{
+                $_SESSION["user"] = $usuario;
+                $_SESSION["roleId"] = $rol;
+                $_SESSION["email"] = $email;
                 self::redirectAccordingToRole();
+            }
         }
+        
         return $loginViewData;
     }
     public function logout()
