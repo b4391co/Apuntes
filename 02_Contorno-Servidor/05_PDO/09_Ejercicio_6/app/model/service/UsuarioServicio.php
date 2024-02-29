@@ -16,18 +16,25 @@ class UsuarioServicio
 
     public function getUsuarios(): array
     {
-        $usuariosDB = $this->usuarioRepository->getUsuarios();
-        $usuarios = [];
+        $usuarios = $this->usuarioRepository->findAll();
 
-        foreach ( $usuariosDB as $usuarioDB ) {
-            $usuario = new Usuario();
-            $usuario = setId( $usuarioDB->getId() );
+        foreach ($usuarios as $usuario) {
+            $roles = $this->rolRepository->findRolesByUserId($usuario->getId());
+            $usuario->setRoles($roles);
         }
+        return $usuarios;
     }
 
     public function login(string $user, string $pwd, $rolId): ?Usuario
     {
-        //TODO
+        $usuario = $this->usuarioRepository->findUsuarioByEmail($user);
+        if(password_verify($pwd, $usuario->getPwdhash())) {
+            $rolesUsuario = $this->rolRepository->findRolesByUserId($usuario->getId());
+            if ($this->isUserInRole($usuario,$rolId))
+                $usuario->setRoles($rolesUsuario);
+            else
+                return null;
+        }
     }
 
     public function getRoles(): array
