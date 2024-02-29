@@ -15,7 +15,6 @@ class UsuarioController
         $this->view = self::VIEW_FOLDER . DIRECTORY_SEPARATOR . 'login';
         $this->page_title = '';
         $this->usuarioServicio = new UsuarioServicio();
-
     }
 
     /* List all notes */
@@ -37,11 +36,11 @@ class UsuarioController
         $this->page_title = 'Inicio de sesión';
         $this->view = self::VIEW_FOLDER . DIRECTORY_SEPARATOR . 'login';
 
-        //b) permitir seleccionar entre los 2 roles de la aplicación: admin y user 
+        //b) permitir seleccionar entre los 2 roles de la aplicación: admin y user
         $app_roles = $this->usuarioServicio->getRoles();
         $loginViewData = new LoginViewData($app_roles);
 
-        if (isset($_POST['email'] ) && isset($_POST['pwd'] ) && isset($_POST['rol'])){
+        if (isset($_POST["email"]) && isset($_POST["pwd"]) && isset($_POST["rol"])){
             $email = $_POST['email'];
             $pwd = $_POST['pwd'];
             $rol = $_POST['rol'];
@@ -52,8 +51,8 @@ class UsuarioController
                 $loginViewData->setStatus(Util::OPERATION_NOK);
             else
                 self::redirectAccordingToRole();
-        } else
-            return $loginViewData;
+        }
+        return $loginViewData;
     }
     public function logout()
     {

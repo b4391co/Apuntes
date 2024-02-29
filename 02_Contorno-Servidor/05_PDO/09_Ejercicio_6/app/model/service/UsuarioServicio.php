@@ -9,10 +9,11 @@ class UsuarioServicio
     private IUsuarioRepository $usuarioRepository;
     private IRolRepository $rolRepository;
 
-    public function __construct(IUsuarioRepository $usuarioRepository, IRolRepository $rolRepository){
-        $this->usuarioRepository = $usuarioRepository;
-        $this->rolRepository = $rolRepository;
+    public function __construct()     {
+        $this->usuarioRepository = new UsuarioRepository();
+        $this->rolRepository = new RolRepository();
     }
+    
 
     public function getUsuarios(): array
     {
@@ -25,16 +26,15 @@ class UsuarioServicio
         return $usuarios;
     }
 
-    public function login(string $user, string $pwd, $rolId): ?Usuario
-    {
-        $usuario = $this->usuarioRepository->findUsuarioByEmail($user);
+    public function login(string $usuario, string $pwd, $rolId): ?Usuario {
+        $usuario = $this->usuarioRepository->findUsuarioByEmail($usuario);
         if(password_verify($pwd, $usuario->getPwdhash())) {
-            $rolesUsuario = $this->rolRepository->findRolesByUserId($usuario->getId());
-            if ($this->isUserInRole($usuario,$rolId))
-                $usuario->setRoles($rolesUsuario);
-            else
-                return null;
+            $roles = $this->rolRepository->findRolesByUserId($usuario->getId());
+            $usuario->setRoles($roles);
+            if ($this->isUserInRole($usuario, $rolId))
+                return $usuario;
         }
+        return null;
     }
 
     public function getRoles(): array

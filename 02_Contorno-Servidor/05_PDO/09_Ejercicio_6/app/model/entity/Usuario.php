@@ -9,7 +9,7 @@ class Usuario  {
     private int $id;
     private string $email;
     private string $pwdhash;
-    private array $roles;
+    private array $roles = [];
     
     use ViewData;
     
