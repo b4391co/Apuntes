@@ -50,7 +50,7 @@ class UsuarioController
             if ($usuario == null)
                 $loginViewData->setStatus(Util::OPERATION_NOK);
             else{
-                $_SESSION["user"] = $usuario;
+                $_SESSION["userId"] = $usuario->getId();
                 $_SESSION["roleId"] = $rol;
                 $_SESSION["email"] = $email;
                 self::redirectAccordingToRole();
