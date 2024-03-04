@@ -85,7 +85,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int v;
         while (true) {
-            System.out.println("introduce: " + dato);
+            System.out.println("introduce: " + dato);w
             if (sc.hasNextInt()) {
                 v = sc.nextInt();
                 break;
