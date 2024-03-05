@@ -49,7 +49,7 @@ public class Alumno extends Miembro implements MetodosMiembros {
 
     @Override
     public String toString() {
-        return super.toString() + "\nAlumno [ciclo=" + ciclo + ", media=" + media + ", importeMatricula=" + importeMatricula + "]";
+        return super.toString() + "\n\tAlumno [ciclo=" + ciclo + ", media=" + media + ", importeMatricula=" + importeMatricula + "]";
     }
 
     @Override
