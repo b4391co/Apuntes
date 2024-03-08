@@ -1,12 +1,10 @@
 package edu.gorilas;
 
 import edu.gorilas.administrador.ProgramadorTareas;
-
-import edu.gorilas.administrador.ProgramadorTareas;
 import edu.gorilas.clientes.Mollapp;
 import edu.gorilas.filtros.Autorizacion;
 import edu.gorilas.targets.Vehicle;
-import edu.gorilas.filtros.Autenticacion;
+
 
 public final class App {
     public static void main(String[] args) {

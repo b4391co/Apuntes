@@ -6,7 +6,8 @@ public class Mollapp implements Cliente {
 
     private ProgramadorTareas programador = null;
 
-    @Override public void setProgramadorTareas(ProgramadorTareas programador) {
+    @Override
+    public void setProgramadorTareas(ProgramadorTareas programador) {
         this.programador = programador;
     }
 

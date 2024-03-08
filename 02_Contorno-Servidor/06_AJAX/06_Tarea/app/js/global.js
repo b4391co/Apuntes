@@ -10,5 +10,7 @@ function onceLoaded() {
     document.querySelector('#formLogin').onsubmit = login;
     
     getRoles();
+
+    document.querySelector('#cerrarSesion').onsubmit = comfirmLogout;
 }
 

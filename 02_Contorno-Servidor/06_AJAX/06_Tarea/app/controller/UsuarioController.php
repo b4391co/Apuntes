@@ -67,6 +67,20 @@ class UsuarioController
         }
     }
 
+    public function logout()
+    {
+        $this->page_title = 'Cerrar sesion';
+        $this->view = self::VIEW_FOLDER . DIRECTORY_SEPARATOR . 'logout';
+        $userResult = json_decode(file_get_contents("php://input"), true);
+        if ($userResult != null) {
+            $userId = $userResult["userId"];
+            SessionManager::cerrarSesion();
+        } else {
+            //400 Bad Request
+            http_response_code(400);
+            $response["error"] = true;
+        }
+    }
 
 
     public function register()

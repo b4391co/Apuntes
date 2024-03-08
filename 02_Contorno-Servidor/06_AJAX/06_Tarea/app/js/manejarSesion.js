@@ -1,4 +1,5 @@
 
+let userId = null;
 
 function login(event) {
     //evitamos que se envíe el formulario de forma predefinida (la acción por defecto sería enviar los datos al servidor)
@@ -39,8 +40,9 @@ function login(event) {
             .then((response) => {
                 console.log(response);
                 if (response.userId && response.email) {
+                    userId = response.userId;
+                    console.log(userId);
                     toggleLoginMain(response.email);
-               
                 } else {
                     console.error('La autenticación ha fallado');
                     showErrorLogin('La autenticación ha fallado', true, "errorLogin");
@@ -52,6 +54,44 @@ function login(event) {
             });
 
 
+}
+
+function logoutCliente() {
+    if (userId != null || userId != 'undefinded') {
+        let login_url = "?controller=Usuario&action=logoutCliente";
+        const request = new Request(base_url + login_url, {
+            method: "POST",
+            body: JSON.stringify({userId : userId})
+        });
+
+        fetch(request)
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json();
+                    //bad request
+                } else if ((response.status === 400) || (response.status===401)) {
+                    console.log('error 400');
+                    return false;
+                } else {
+                    console.log("Something went wrong on API server!");
+                    return false;
+                }
+
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error('Ha ocurrido un error en login' + error);
+            });
+    }
+}
+
+function comfirmLogout(evt) {
+    evt.preventDefault();
+    showModal("spa_modal", "Confirmar Cerrar sesion", "Desea cerrar sesion?", null, null, function () {
+        logoutCliente();
+    },null)
 }
 
 /**
