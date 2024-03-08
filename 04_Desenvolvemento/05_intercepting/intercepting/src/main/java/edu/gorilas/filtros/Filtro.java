@@ -1,4 +1,4 @@
-package edu.gorilas.filtres;
+package edu.gorilas.filtros;
 
 public interface Filtro {
     public void ejecucion(String missatge);
