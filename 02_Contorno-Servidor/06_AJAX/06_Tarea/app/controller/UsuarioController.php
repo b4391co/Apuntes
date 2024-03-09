@@ -67,19 +67,30 @@ class UsuarioController
         }
     }
 
-    public function logout()
-    {
-        $this->page_title = 'Cerrar sesion';
-        $this->view = self::VIEW_FOLDER . DIRECTORY_SEPARATOR . 'logout';
-        $userResult = json_decode(file_get_contents("php://input"), true);
-        if ($userResult != null) {
-            $userId = $userResult["userId"];
-            SessionManager::cerrarSesion();
+    public function logout(){
+        $data = json_decode(file_get_contents("php://input"), true);
+        
+        if(isset($data['userId'])){
+            $userId = $data['userId'];
+
+            if ($userId == $_SESSION['userId']) {
+                SessionManager::cerrarSesion();
+                http_response_code(200);
+                $response['error'] = false;
+                return json_encode($response);
+            } else {
+                SessionManager::cerrarSesion();
+                http_response_code(400);
+                $response['error'] = "IDs no coniciden, cerrando sesion";
+                return json_encode($response);
+            }
         } else {
-            //400 Bad Request
+            SessionManager::cerrarSesion();
             http_response_code(400);
-            $response["error"] = true;
+            $response['error'] = true;
+            return json_encode($response);
         }
+
     }
 
 

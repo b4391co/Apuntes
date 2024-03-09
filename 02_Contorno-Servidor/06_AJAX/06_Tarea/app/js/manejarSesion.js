@@ -57,33 +57,32 @@ function login(event) {
 }
 
 function logoutCliente() {
-    if (userId != null || userId != 'undefinded') {
-        let login_url = "?controller=Usuario&action=logoutCliente";
-        const request = new Request(base_url + login_url, {
+    if (userId != null && userId != 'undefinded') {
+        let logout_url = "?controller=Usuario&action=logout";
+        const request = new Request(base_url + logout_url, {
             method: "POST",
-            body: JSON.stringify({userId : userId})
+            body: JSON.stringify({
+                'userId': userId
+            })
         });
-
         fetch(request)
             .then((response) => {
-                if (response.status === 200) {
-                    return response.json();
-                    //bad request
-                } else if ((response.status === 400) || (response.status===401)) {
-                    console.log('error 400');
-                    return false;
-                } else {
-                    console.log("Something went wrong on API server!");
-                    return false;
-                }
-
+                return response.json();
             })
             .then((response) => {
+                
                 console.log(response);
+                toggleLoginMain('');
+                userId = null;
+                if (response.error == false) {
+                    console.log('Se ha cerrado sesion correctamente');
+                } else {
+                    showErrorLogin('Ha ocurrido un error en logout', true, "errorLogout");}
             })
             .catch((error) => {
-                console.error('Ha ocurrido un error en login' + error);
+                console.error('Ha ocurrido un error en logout' + error);
             });
+
     }
 }
 
