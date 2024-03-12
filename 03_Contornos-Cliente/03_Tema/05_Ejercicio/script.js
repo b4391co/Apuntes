@@ -1,4 +1,4 @@
-class Articulo{
+class Articulo {
     constructor(nombre, precio) {
         this._nombre = nombre;
         this._precio = precio;
@@ -37,6 +37,7 @@ function iniciar() {
         btnEliminar.id = "btnEliminar";
         btnEliminar.appendChild(document.createTextNode("X"))
         let btnSubir = document.createElement("button");
+        //btnSubir.addEventListener("click", subir);
         btnSubir.id = "btnSubir";
         btnSubir.appendChild(document.createTextNode("Subir"))
         let btnBajar = document.createElement("button");
@@ -51,7 +52,11 @@ function iniciar() {
     }
 
     function eliminar(evt) {
+        let eliminado = evt.target.parentNode.firstChild.nodeValue;
+        localStorage.removeItem(eliminado);
         evt.target.parentNode.remove();
+        let divEliminado = document.createElement("div");
+        divEliminado.appendChild(document.createTextNode(eliminado));
+        document.getElementById("listaE").append(divEliminado);
     }
-
 }
