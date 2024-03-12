@@ -13,6 +13,7 @@ class Cuadrado extends Figura
         $this->lado = $lado;
 
     }
+    
     public function calcularArea()
     {
         parent::calcularArea();
