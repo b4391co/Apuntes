@@ -1,10 +1,15 @@
 package boletin.ej2;
 
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Main {
 
@@ -26,22 +31,22 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            try (FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+                out.print("");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void escribirFichero() {
-        try {
-            FileOutputStream fos = new FileOutputStream(file, true);
-            fos.getChannel().truncate(0);
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(file, true))) {
             for (int i = 0; i < productos.length; i++) {
-                fos.write(productos[i].getBytes());
-                fos.write(" - ".getBytes());
-                fos.write(precios[i].toString().getBytes());
-                fos.write("\n".getBytes());
+                dos.writeUTF(productos[i] + " - " + precios[i] + "\n");
             }
-
-            fos.write("\n".getBytes());
-            fos.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -51,7 +56,7 @@ public class Main {
 
     public static void leerFichero() {
         try {
-            FileInputStream fis = new FileInputStream(file);
+            DataInputStream fis = new DataInputStream(new FileInputStream(file));
             int byteLeido;
             while ((byteLeido = fis.read()) != -1) {
                 System.out.print((char) byteLeido);
