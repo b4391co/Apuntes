@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use DateTime;
 use App\Entity\Autor;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Autor>
@@ -19,6 +20,22 @@ class AutorRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Autor::class);
+    }
+
+
+    public function findByFechaNacimiento(DateTime $fechaNacimiento):array {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('SELECT a FROM App\Entity\Autor a WHERE a.fechaNacimiento >= :fechaNacimiento');
+        $query->setParameter('fechaNacimiento', $fechaNacimiento);
+        return $query->getResult();
+
+    }
+
+    public function getAutoresPorVentas(int $ventas) {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery("SELECT a FROM App\Entity\Autor a join a.libros li WHERE li.unidadesVendidas > ?1");
+        return $query->setParameter(1, $ventas)->getResult();
+        
     }
 
     //    /**

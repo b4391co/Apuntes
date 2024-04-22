@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Libro;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Libro>
@@ -20,6 +20,27 @@ class LibroRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Libro::class);
     }
+
+    public function getUnidadesVendidas()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT MAX(l.unidadesVendidas)
+            FROM App\Entity\Libro l'
+        );
+        return $query->getSingleScalarResult();
+    }
+
+    public function getLibrosPorCategoria(){
+        return $this->createQueryBuilder('l')
+            ->select('categoria', 'COUNT(l.id)')
+            ->groupBy('categoria')
+            ->getQuery()
+            ->getResult();
+    }
+
+    //    public function findOneBySomeField($value): ?Libro
+    //
 
     //    /**
     //     * @return Libro[] Returns an array of Libro objects
