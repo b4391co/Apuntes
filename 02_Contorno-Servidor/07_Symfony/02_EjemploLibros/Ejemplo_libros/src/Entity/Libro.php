@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\LibroRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
+use App\Repository\LibroRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: LibroRepository::class)]
 class Libro
@@ -25,22 +25,15 @@ class Libro
     #[ORM\Column(nullable: true)]
     private ?int $unidadesVendidas = null;
 
-    /**
-     * @var Collection<int, Autor>
-     */
-    #[ORM\ManyToMany(targetEntity: Autor::class, inversedBy: 'libors')]
+    #[ORM\ManyToMany(targetEntity: Autor::class, inversedBy: 'libros')]
     private Collection $autores;
 
-    /**
-     * @var Collection<int, editorial>
-     */
-    #[ORM\ManyToMany(targetEntity: editorial::class, inversedBy: 'libros')]
-    private Collection $editorial;
+    #[ORM\ManyToOne(inversedBy: 'libros')]
+    private ?Editorial $editorial = null;
 
     public function __construct()
     {
         $this->autores = new ArrayCollection();
-        $this->editorial = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,26 +101,14 @@ class Libro
         return $this;
     }
 
-    /**
-     * @return Collection<int, editorial>
-     */
-    public function getEditorial(): Collection
+    public function getEditorial(): ?Editorial
     {
         return $this->editorial;
     }
 
-    public function addEditorial(editorial $editorial): static
+    public function setEditorial(?Editorial $editorial): static
     {
-        if (!$this->editorial->contains($editorial)) {
-            $this->editorial->add($editorial);
-        }
-
-        return $this;
-    }
-
-    public function removeEditorial(editorial $editorial): static
-    {
-        $this->editorial->removeElement($editorial);
+        $this->editorial = $editorial;
 
         return $this;
     }

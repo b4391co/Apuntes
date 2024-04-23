@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\EditorialRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EditorialRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: EditorialRepository::class)]
 class Editorial
@@ -18,10 +18,7 @@ class Editorial
     #[ORM\Column(length: 255)]
     private ?string $nombre = null;
 
-    /**
-     * @var Collection<int, Libro>
-     */
-    #[ORM\ManyToMany(targetEntity: Libro::class, mappedBy: 'editorial')]
+    #[ORM\OneToMany(targetEntity: Libro::class, mappedBy: 'editorial')]
     private Collection $libros;
 
     public function __construct()
@@ -58,7 +55,7 @@ class Editorial
     {
         if (!$this->libros->contains($libro)) {
             $this->libros->add($libro);
-            $libro->addEditorial($this);
+            $libro->setEditorial($this);
         }
 
         return $this;
@@ -67,7 +64,10 @@ class Editorial
     public function removeLibro(Libro $libro): static
     {
         if ($this->libros->removeElement($libro)) {
-            $libro->removeEditorial($this);
+            // set the owning side to null (unless already changed)
+            if ($libro->getEditorial() === $this) {
+                $libro->setEditorial(null);
+            }
         }
 
         return $this;

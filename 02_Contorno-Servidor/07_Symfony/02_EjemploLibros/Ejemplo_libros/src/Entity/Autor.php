@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\AutorRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
+use App\Repository\AutorRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: AutorRepository::class)]
 class Autor
@@ -26,11 +26,11 @@ class Autor
      * @var Collection<int, Libro>
      */
     #[ORM\ManyToMany(targetEntity: Libro::class, mappedBy: 'autores')]
-    private Collection $libors;
+    private Collection $libros;
 
     public function __construct()
     {
-        $this->libors = new ArrayCollection();
+        $this->libros = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,25 +65,25 @@ class Autor
     /**
      * @return Collection<int, Libro>
      */
-    public function getLibors(): Collection
+    public function getLibros(): Collection
     {
-        return $this->libors;
+        return $this->libros;
     }
 
-    public function addLibor(Libro $libor): static
+    public function addLibro(Libro $libro): static
     {
-        if (!$this->libors->contains($libor)) {
-            $this->libors->add($libor);
-            $libor->addAutore($this);
+        if (!$this->libros->contains($libro)) {
+            $this->libros->add($libro);
+            $libro->addAutore($this);
         }
 
         return $this;
     }
 
-    public function removeLibor(Libro $libor): static
+    public function removeLibro(Libro $libro): static
     {
-        if ($this->libors->removeElement($libor)) {
-            $libor->removeAutore($this);
+        if ($this->libros->removeElement($libro)) {
+            $libro->removeAutore($this);
         }
 
         return $this;
