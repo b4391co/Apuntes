@@ -48,7 +48,9 @@ public class Main {
                     + "[5] Buscar Libro por Nombre\n"
                     + "[6] Buscar libros de un Autor\n"
                     + "[7] Modificar Autor por Dni\n"
-                    + "[8] Eliminar Libro\n"
+                    + "[8] Modificar Libro\n"
+                    + "[9] Eliminar Autor\n"
+                    + "[10] Eliminar Libro\n"
                     + "[0] Exit\n");
             op = sc.nextInt();
             sc.nextLine();
@@ -64,7 +66,7 @@ public class Main {
                     db.listarLibros(sentencia);
                     break;
                 case 4:
-                    db.listarAutores(sentencia); // Autores con sus libros
+                    db.listarAutoresConLibros(sentencia); // Autores con sus libros
                     break;
                 case 5:
                     db.listarLibroPorNombre(sentencia);
@@ -76,7 +78,13 @@ public class Main {
                     db.modificarAutor(sentencia);
                     break;
                 case 8:
-                    db.eliminar(sentencia);
+                    db.modificarLibro(sentencia);
+                    break;
+                case 9:
+                    db.eliminarAutor(sentencia);
+                    break;
+                case 10:
+                    db.eliminarLibro(sentencia);
                     break;
                 case 0:
 

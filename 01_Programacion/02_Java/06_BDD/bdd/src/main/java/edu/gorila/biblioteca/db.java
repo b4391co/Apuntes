@@ -1,6 +1,9 @@
 package edu.gorila.biblioteca;
 
 import java.util.Scanner;
+
+import javax.management.RuntimeErrorException;
+
 import java.sql.*;
 
 public class db {
@@ -44,6 +47,22 @@ public class db {
     }
 
     public static void listarAutores(Statement sentencia) {
+        try {
+            ResultSet result = sentencia.executeQuery("Select * from AUTORES");
+
+            while (result.next()) {
+                System.out.println("Autor: ");
+                System.out.println("DNI: " + result.getString("dni"));
+                System.out.println("Nombre: " + result.getString("nombre"));
+                System.out.println("nacionalidad: " + result.getString("nacionalidad"));
+                System.out.println("-----------------------------------------\n");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void listarAutoresConLibros(Statement sentencia) {
         try {
             ResultSet result = sentencia.executeQuery("Select * from AUTORES");
 
@@ -189,7 +208,8 @@ public class db {
             String autor = Utils.verificarDni();
             sc = new Scanner(System.in);
             try {
-                sentencia.executeUpdate("UPDATE LIBROS set precio=" + precio + " autor='" + autor + "' where titulo = '" + nombre + "';");
+                sentencia.executeUpdate("UPDATE LIBROS set precio=" + precio + ", autor='" + autor
+                        + "' where Titulo = '" + nombre + "';");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -198,19 +218,34 @@ public class db {
         }
     }
 
-    public static void eliminar(Statement sentencia) {
-        System.out.println("Dame nombre del producto a eliminar");
-        ResultSet res = buscarProductoP(sentencia);
-        if (res != null) {
+    public static void eliminarAutor(Statement sentencia) {
+        System.out.println("DNI del autor a eliminar");
+        String dni = Utils.verificarDni();
+
+        if (verificarAutorPorDni(sentencia, dni)) {
             try {
-                sentencia.execute("DELETE from PRODUCTOS where idProd=" + res.getInt("idProd") + ";");
-            } catch (SQLException e) {
+                sentencia.execute("DELETE from LIBROS where autor='" + dni + "';");
+                sentencia.execute("DELETE from AUTORES where dni='" + dni + "';");
+                System.out.println("Autor Eliminado\n");
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        } else {
-            System.out.println("El producto no se encuentra en la base de datos");
         }
-
     }
 
+    public static void eliminarLibro(Statement sentencia) {
+        System.out.println("Introduce un nombre");
+        String nombre = Utils.verificarString();
+
+        if (verificarLibroPorNombre(sentencia, nombre)) {
+            try {
+                sentencia.execute("DELETE from Libros WHERE Titulo='" + nombre + "';");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            System.out.println("El libro no se encuentra en la base de datos");
+        }
+    }
 }
