@@ -15,7 +15,7 @@
  }
  /* Load controller */
  $controllerName = ucfirst($_GET["controller"]) . 'Controller';
- $controller_path = $controllerName.'.php';z
+ $controller_path = $controllerName.'.php';
 
 
  //Todos los controladores estarán en la carpeta controller. Si no existe, asignamos uno por defecto
