@@ -48,4 +48,15 @@ class ConsultasController extends AbstractController
             'max' => $max,
         ]);
     }
+
+    #[Route('/consultas/autores/max', name: 'app_unidades_autores_max')]
+    public function unidadesMax(): Response
+    {
+        $libroSuperVentasConAutores = $this->consultasService->getLibroAutoresMax();
+
+        return $this->render('consultas/index2.html.twig', [
+            'controller_name' => 'ConsultasController',
+            'libroSuperVentas' => $libroSuperVentasConAutores,
+        ]);
+    }
 }

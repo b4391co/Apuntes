@@ -35,4 +35,7 @@ class ConsultasService{
         return $this->LibroRepository->getLibrosPorEditorial();
     }
 
+    public function getLibroAutoresMax(){
+        return $this->autorRepository->findAutoresSuperVentas();
+    }
 }

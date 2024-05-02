@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use DateTime;
 use App\Entity\Autor;
+use App\Entity\Libro;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -28,14 +29,29 @@ class AutorRepository extends ServiceEntityRepository
         $query = $em->createQuery('SELECT a FROM App\Entity\Autor a WHERE a.fechaNacimiento >= :fechaNacimiento');
         $query->setParameter('fechaNacimiento', $fechaNacimiento);
         return $query->getResult();
-
     }
+
+
 
     public function getAutoresPorVentas(int $ventas) {
         $em = $this->getEntityManager();
         $query = $em->createQuery("SELECT a FROM App\Entity\Autor a join a.libros li WHERE li.unidadesVendidas > ?1");
         return $query->setParameter(1, $ventas)->getResult();
         
+    }
+
+    //public function findAutoresSuperVentas():Libro{
+    //    $em = $this->getEntityManager();
+    //    $query = $em->createQuery("SELECT a, li FROM App\Entity\Libro li join li.autores a where li.unidadesVendidas= (select max(li2.unidadesVendidas) FROM App\Entity\Libro li2)");
+    //    return $query->getOneOrNullResult();
+    //}
+
+    public function findAutoresSuperVentas(){
+        return $this->createQueryBuilder('li')
+            ->select("MAX(li.unidadesVendidas)")
+            ->join('autores.libros', 'li')
+            ->getQuery()
+            ->getSingleScalarResult();h
     }
 
     //    /**
