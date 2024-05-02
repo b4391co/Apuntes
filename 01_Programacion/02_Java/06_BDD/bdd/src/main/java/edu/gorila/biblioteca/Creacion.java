@@ -19,7 +19,7 @@ public class Creacion {
 
             sentencia.execute("CREATE TABLE IF NOT EXISTS LIBROS"
                     + "(idLibro INT(5) unsigned zerofill not null auto_increment PRIMARY KEY,"
-                    + "Titulo VARCHAR(30) not null,"
+                    + "Titulo VARCHAR(100) not null,"
                     + "precio float not null,"
                     + "autor VARCHAR(9) not null,"
                     + "CONSTRAINT FK_autor Foreign key (autor) REFERENCES AUTORES (dni))"

@@ -39,8 +39,7 @@ public class db {
         sc = new Scanner(System.in);
 
         try {
-            sentencia.executeUpdate(
-                    "INSERT INTO LIBROS (titulo,precio,autor) VALUES('" + titulo + "'," + precio + ",'" + autor + "')");
+            sentencia.executeUpdate("INSERT INTO LIBROS (titulo,precio,autor) VALUES('" + titulo + "'," + precio + ",'" + autor + "')");
         } catch (SQLException e) {
             System.err.println("Se ha producido un error al insertar");
         }
