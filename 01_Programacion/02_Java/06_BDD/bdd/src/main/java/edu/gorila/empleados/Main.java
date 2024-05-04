@@ -16,7 +16,7 @@ public static void main(String[] args) {
         e.printStackTrace();
     }
 
-    String url = "jdbc:mariadb://localhost:3306/?user=admin&password=QpWBHu9ni0J4";
+    String url = "jdbc:mariadb://172.20.0.2:3306/?user=admin&password=QpWBHu9ni0J4";
     //String url = "jdbc:mariadb://localhost:3306/?user=root&password=pwd";
     try {
         conexion = DriverManager.getConnection(url);
@@ -32,7 +32,7 @@ public static void main(String[] args) {
         System.out.println("Error");
     }
 
-    Creacion.crearBase(sentencia);
+    CreacionDB.crearBase(sentencia);
 
     do {
         System.out.println("**** MENU ****\n" +
